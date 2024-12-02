@@ -29,18 +29,18 @@ jobs:
           echo "Contents of test1_expected.txt:"
           cat test_data/test1_expected.txt
 
-      - name: create actual1.txt output
+      - name: create test1_expected.txt output
         run: |
           mkdir output_files  # Ensure the output directory exists
           python3 find_lowest_number.py test_data/test1_input.txt output_files/test1_output.txt
           diff output_files/test1_output.txt test_data/test1_expected.txt
 
-      - name: create actual2.txt output
+      - name: create test2_expected.txt output
         run: |
           python3 find_lowest_number.py test_data/test2_input.txt output_files/test2_output.txt
           diff output_files/test2_output.txt test_data/test2_expected.txt
 
-      - name: create actual3.txt output
+      - name: create test3_expected.txt output
         run: |
           python3 find_lowest_number.py test_data/test3_input.txt output_files/test3_output.txt
           diff output_files/test3_output.txt test_data/test3_expected.txt
