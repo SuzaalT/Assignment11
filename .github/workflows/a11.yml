@@ -1,0 +1,46 @@
+name: Finding Lowest Number from the test datafind_lowest_number.py
+
+on: 
+  push:
+    branches:
+      - main  
+
+jobs:
+  automated_test:
+    name: Automated Test
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Debug Test Files
+        run: |
+          echo "Listing files in the repository:"
+          ls -R
+          
+          echo "Contents of test1_input.txt:"
+          cat test_data/test1_input.txt
+          
+          echo "Contents of test1_expected.txt:"
+          cat test_data/test1_expected.txt
+
+      - name: create actual1.txt output
+        run: |
+          mkdir output_files  # Ensure the output directory exists
+          python3 find_lowest_number.py test_data/test1_input.txt output_files/test1_output.txt
+          diff output_files/test1_output.txt test_data/test1_expected.txt
+
+      - name: create actual2.txt output
+        run: |
+          python3 find_lowest_number.py test_data/test2_input.txt output_files/test2_output.txt
+          diff output_files/test2_output.txt test_data/test2_expected.txt
+
+      - name: create actual3.txt output
+        run: |
+          python3 find_lowest_number.py test_data/test3_input.txt output_files/test3_output.txt
+          diff output_files/test3_output.txt test_data/test3_expected.txt
